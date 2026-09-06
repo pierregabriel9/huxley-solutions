@@ -48,26 +48,26 @@ int fat(int n)
     }
 }
 
-double loop (int n, double soma, double fatorial, double primo)
+double loop (int n, double soma, double fatorial, double primo, int i)
 {
-    if (n == 1)
+    i++;
+    if (i == n)
     {
-        fatorial = fat(n);
-        primo = prim(n);
+        fatorial = fat(i);
+        primo = prim(i);
         soma += (fatorial / primo);
-        printf("%d!/%0.lf", n, primo);
+        printf("%d!/%0.lf\n", i, primo);
         return soma;
     }
     else
     {
-        fatorial = fat(n);
-        primo = prim(n);
+        fatorial = fat(i);
+        primo = prim(i);
         soma += (fatorial / primo);
-        double resultado = loop(n - 1, soma, fatorial, primo);
 
-        printf(" + %d!/%.0lf", n, primo);
+        printf("%d!/%.0lf + ", i, primo);
 
-        return resultado;
+        return loop(n, soma, fatorial, primo, i);
     }
 }
 
@@ -83,8 +83,7 @@ int main()
     }
     else
     {
-        double resultado = loop(n, 0, 1, 1);
-        printf("\n");
+        double resultado = loop(n, 0, 1, 1, 0);
         printf("%.2lf\n", resultado);
     }
 	return 0;
