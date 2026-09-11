@@ -143,7 +143,7 @@ void loop(int i, double p1, char kc, double p2, char or, double k_diaria, double
                 p1 *= 0.9;
             }
         }
-
+        
         loop(i + 1, p1, kc, p2, or, k_diaria, o_diaria, dia_inicial);
     }
 }
