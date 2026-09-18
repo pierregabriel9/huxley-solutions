@@ -18,16 +18,16 @@ void ida_final(int base, int i, int distancia_total)
     }
 }
 
-int volta(int distancia, int esquecimento)
+void volta(int distancia, int esquecimento)
 {
     if(esquecimento < 0)
     {
-        return distancia;
+        return;
     }
     else
     {
         printf("Voltando, posicao %d\n", esquecimento);
-        return volta(distancia, esquecimento - 1);
+        volta(distancia, esquecimento - 1);
     }
 }
 
@@ -42,7 +42,7 @@ int ida_normal(int base, int esquecimento, int i, int distancia)
     {
         printf("Indo, posicao %d\n", i);
         distancia++;
-        ida_normal(base, esquecimento, i + 1, distancia);
+        return ida_normal(base, esquecimento, i + 1, distancia);
     }
 }
 
