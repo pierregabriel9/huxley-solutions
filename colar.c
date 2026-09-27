@@ -149,7 +149,7 @@ void calculo(int n, char colar[], int qtd[], int ponto_quebra)
     else
     {
         char cor_esq, cor_dir;
-        int esquerda, direita, total;
+        int esquerda, direita;
 
         if(ponto_quebra + 1 != n)
         {
@@ -162,8 +162,16 @@ void calculo(int n, char colar[], int qtd[], int ponto_quebra)
             cor_dir = dir(colar, 0, n, 0);
         }
 
-        esquerda = ler_esq(colar, ponto_quebra, cor_esq, n, 1);
-        direita = ler_dir(colar, ponto_quebra + 1, cor_dir, n, 1);
+        if(ponto_quebra == n - 1)
+        {
+            esquerda = ler_esq(colar, ponto_quebra, cor_esq, n, 1);
+            direita = ler_dir(colar, 0, cor_dir, n, 1);
+        }
+        else
+        {
+            esquerda = ler_esq(colar, ponto_quebra, cor_esq, n, 1);
+            direita = ler_dir(colar, ponto_quebra + 1, cor_dir, n, 1);
+        }
 
         if(direita + esquerda >= n)
         {
