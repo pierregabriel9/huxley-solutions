@@ -191,7 +191,7 @@ void ler_colar(char colar[], int i, int n)
     }
 }
 
-int main() 
+int main()
 {
     int n;
     scanf("%d", &n);
