@@ -1,52 +1,52 @@
 #include <stdio.h>
 #include <math.h>
 
-double calc_var(double numeros[], double media, int i, double variancia)
+double calc_var(double numeros[], double media, int i, double variancia, int n)
 {
-    if (i == 10)
+    if (i == n)
     {
-        return variancia / 10;
+        return variancia / (n - 1);
     }
     else
     {
         variancia += pow(media - numeros[i], 2);
-        return calc_var(numeros, media, i + 1, variancia);
+        return calc_var(numeros, media, i + 1, variancia, n);
     }
 }
 
-double calc_media(double numeros[], int i, double total)
+double calc_media(double numeros[], int i, double total, int n)
 {
-    if (i == 10)
+    if (i == n)
     {
-        double media = total / 10;
-        return calc_var(numeros, media, 0, 0);
+        double media = total / (double) n;
+        return calc_var(numeros, media, 0, 0, n);
     }
     else
     {
         total += numeros[i];
-        return calc_media(numeros, i + 1, total);
+        return calc_media(numeros, i + 1, total, n);
     }
 }
 
-double calc_desvio(double numeros[])
+double calc_desvio(double numeros[], int n)
 {
-    return sqrt(calc_media(numeros, 0, 0));
+    return sqrt(calc_media(numeros, 0, 0, n));
 }
 
-void ler_nums(double numeros[], int i)
+void ler_nums(double numeros[], int i, int n)
 {
-    if(i == 10)
+    if(i == n)
     {
         return;
     }
     else
     {
-        double n;
-        scanf("%lf", &n);
+        double num;
+        scanf("%lf", &num);
 
-        numeros[i] = n;
+        numeros[i] = num;
 
-        ler_nums(numeros, i + 1);
+        ler_nums(numeros, i + 1, n);
     }
 }
 
@@ -54,9 +54,12 @@ int main()
 {
     // Rodrigo falor para deixar mais na main
 
-    double numeros[10];
+    int n;
+    scanf("%d", &n);
 
-    ler_nums(numeros, 0);
+    double numeros[n];
 
-    printf("Desvio Padrão: %lf\n", calc_desvio(numeros));
+    ler_nums(numeros, 0, n);
+
+    printf("%.2lf\n", calc_desvio(numeros, n));
 }
